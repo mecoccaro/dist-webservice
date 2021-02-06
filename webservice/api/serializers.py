@@ -7,11 +7,6 @@ class FacultySerializer(serializers.ModelSerializer):
         fields = ('name',
                   'description')
 
-class FacultyDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Faculty
-        fields = ('description',)
-
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
@@ -20,10 +15,6 @@ class SchoolSerializer(serializers.ModelSerializer):
                   'description'
                   'faculty')
 
-class SchoolDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = School
-        fields = ('status',)
 
 class SectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,10 +30,6 @@ class SectionSerializer(serializers.ModelSerializer):
                   'hl',
                   'school')
 
-class SectionDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Section
-        fields = ('status',)
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,10 +37,6 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         fields = ('status',
                   'type',)
 
-class EnrollmentDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Enrollment
-        fields = ('status',)
 
 class EnrollSectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -69,8 +52,3 @@ class PersonSerializer(serializers.ModelSerializer):
                   'first_name',
                   'last_name',
                   'enrollment')
-
-class PersonDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Person
-        fields = ('status',)
