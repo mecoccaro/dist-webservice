@@ -32,7 +32,8 @@ class SectionSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = ('type',)
+        fields = ('type',
+                  'person_fk'  )
 
 
 class EnrollSectSerializer(serializers.ModelSerializer):
