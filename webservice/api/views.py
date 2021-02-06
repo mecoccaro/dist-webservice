@@ -51,3 +51,21 @@ def faculty_delete(request, pk):
         faculty.deleted_date = datetime.now()
         faculty.save()
         return Response({'Faculty deleted'}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def students_section(request, pk):
+    StudentList= []
+    try:
+        enr_sec = Enroll_Sect.objects.get(pk=pk)
+    except Enroll_Sect.DoesNotExist:
+        return Response({'Section doesnt exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    for i in enr_sec:
+        enroll = Enrollment.objects.get(pk=i.enrrollment_fk_id)
+        if enroll.type == 'S':
+            student = Person.objects.get(pk= enroll.person_fk_id)
+            StudentList.append(student.name + ' '+ status.lastname)
+    return Response(StudentList)
+
+
+

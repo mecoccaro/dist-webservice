@@ -11,4 +11,5 @@ urlpatterns = [
     url('faculty/', views.faculty),
     url('faculty-details/(?P<pk>[0-9]+)$', views.faculty_detail),
     url('faculty-delete/(?P<pk>[0-9]+)$', views.faculty_delete),
+    url('student_section/(?P<pk>[0-9]+)$', views.students_section)
 ]
