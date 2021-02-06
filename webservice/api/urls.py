@@ -31,4 +31,8 @@ urlpatterns = [
     url('person/', views.person),
     url('person-details/(?P<pk>[0-9]+)$', views.person_detail),
     url('person-delete/(?P<pk>[0-9]+)$', views.person_delete),
+
+    #Enrollment
+    url('enrollment/', views.enrollment),
+    url('enrollment-delete/(?P<pk>[0-9]+)$', views.enrollment_delete)
 ]

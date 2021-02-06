@@ -205,3 +205,30 @@ def person_delete(request, pk):
         person.deleted_date = datetime.now()
         person.save()
         return Response({'Person deleted'}, status=status.HTTP_200_OK)
+
+#Asignar seccion a una persona
+@api_view(['GET','POST'])
+def enrollment(request):
+    if request.method == 'GET':
+        enrollment = Enrollment.objects.all().filter(status='active')
+        serializer = EnrollmentSerializer(enrollment, many=True)
+        return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = EnrollmentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def enrollment_delete(request, pk):
+    try:
+        enrollment = Enrollment.objects.get(pk=pk)
+    except Enrollment.DoesNotExist:
+        return Response({'message: Enrollment does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        enrollment.status = 'inactive'
+        enrollment.deleted_date = datetime.now()
+        enrollment.save()
+        return Response({'Enrollment deleted'}, status=status.HTTP_200_OK)
