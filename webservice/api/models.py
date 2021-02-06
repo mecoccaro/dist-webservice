@@ -37,6 +37,15 @@ class Section(models.Model):
     hl = models.FloatField()
     school_fk = models.ForeignKey(School, on_delete=models.CASCADE)
 
+class Person(models.Model):
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
+
+    cedula = models.CharField(max_length= 11)
+    first_name = models.CharField(max_length= 20)
+    last_name = models.CharField(max_length=20)
+
 class Enrollment(models.Model):
     status = models.CharField(default='active',max_length=8)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -47,19 +56,13 @@ class Enrollment(models.Model):
         ('T', 'teacher'),
     )
     type = models.CharField(max_length=1, choices=TYPE)
+    person_fk = models.ForeignKey(Person, on_delete=models.CASCADE)
+
 
 class Enroll_Sect(models.Model):
     enrollment_fk = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     section_fk = models.ForeignKey(Section, on_delete=models.CASCADE)
 
-class Person(models.Model):
-    status = models.CharField(default='active',max_length=8)
-    created_date = models.DateTimeField(auto_now_add=True)
-    deleted_date = models.DateTimeField(null=True)
 
-    cedula = models.CharField(max_length= 11)
-    first_name = models.CharField(max_length= 20)
-    last_name = models.CharField(max_length=20)
-    enrollment_fk = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
 
 
