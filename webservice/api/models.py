@@ -2,7 +2,7 @@ from django.db import models
 
 class Faculty(models.Model):
     status = models.CharField(max_length= 50)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     deleted_date = models.DateField(null=True)
 
     name = models.CharField(max_length=50)
@@ -10,7 +10,7 @@ class Faculty(models.Model):
 
 class School(models.Model):
     status = models.CharField(max_length=50)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     deleted_date = models.DateField(null=True)
 
     name = models.CharField(max_length=50)
@@ -19,7 +19,7 @@ class School(models.Model):
 
 class Section(models.Model):
     status = models.CharField(max_length=50)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     deleted_date = models.DateField(null=True)
 
     name = models.CharField(max_length=50)
@@ -31,15 +31,15 @@ class Section(models.Model):
         ('M', 'mandatory'),
         ('E', 'elective'),
     )
-    type = models.CharField(max_length= 1, choices=TYPE)
+    type = models.CharField(max_length=1, choices=TYPE)
     ht = models.FloatField()
     hp = models.FloatField()
-    ht = models.FloatField()
+    hl = models.FloatField()
     school_fk = models.ForeignKey(School, on_delete=models.CASCADE)
 
 class Enrollment(models.Model):
     status = models.CharField(max_length=50)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     deleted_date = models.DateField(null=True)
 
     TYPE = (
@@ -54,10 +54,10 @@ class Enroll_Sect(models.Model):
 
 class Person(models.Model):
     status = models.CharField(max_length=50)
-    created_date = models.DateField()
+    created_date = models.DateField(auto_now_add=True)
     deleted_date = models.DateField(null=True)
 
-    dni = models.CharField(max_length= 11)
+    cedula = models.CharField(max_length= 11)
     first_name = models.CharField(max_length= 20)
     last_name = models.CharField(max_length=20)
     enrollment_fk = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
