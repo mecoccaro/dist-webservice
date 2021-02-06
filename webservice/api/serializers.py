@@ -4,14 +4,13 @@ from .models import *
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
-        fields = ('status',
-                  'name',
+        fields = ('name',
                   'description')
 
 class FacultyDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
-        fields = ('status',)
+        fields = ('description',)
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:

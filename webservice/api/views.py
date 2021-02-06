@@ -10,14 +10,12 @@ from .serializers import *
 @api_view(['GET','POST'])
 def faculty(request):
     if request.method == 'GET':
-        faculty = Faculty.objects.all()
+        faculty = Faculty.objects.all().filter(status='Active')
         serializer = FacultySerializer(faculty, many=True)
         return Response(serializer.data)
-
     if request.method == 'POST':
         serializer = FacultySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.created_date = datetime.now()
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -35,8 +33,23 @@ def faculty_detail(request, pk):
         return Response(serializer.data)
 
     if request.method == 'PUT':
+        serializer = FacultySerializer(faculty, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def faculty_delete(request, pk):
+    try:
+        faculty = Faculty.objects.get(pk=pk)
+    except Faculty.DoesNotExist:
+        return Response({'message: Faculty does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
         serializer = FacultyDeleteSerializer(faculty, data=request.data)
         if serializer.is_valid():
+            faculty.status = 'inactive'
             faculty.deleted_date = datetime.now()
             serializer.save()
             return Response(serializer.data)

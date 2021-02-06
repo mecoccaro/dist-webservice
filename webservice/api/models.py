@@ -1,26 +1,26 @@
 from django.db import models
 
 class Faculty(models.Model):
-    status = models.CharField(max_length= 50)
-    created_date = models.DateField(auto_now_add=True)
-    deleted_date = models.DateField(null=True)
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
 
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
 class School(models.Model):
-    status = models.CharField(max_length=50)
-    created_date = models.DateField(auto_now_add=True)
-    deleted_date = models.DateField(null=True)
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
 
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     faculty_fk = models.ForeignKey(Faculty, on_delete=models.CASCADE)
 
 class Section(models.Model):
-    status = models.CharField(max_length=50)
-    created_date = models.DateField(auto_now_add=True)
-    deleted_date = models.DateField(null=True)
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
 
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -38,9 +38,9 @@ class Section(models.Model):
     school_fk = models.ForeignKey(School, on_delete=models.CASCADE)
 
 class Enrollment(models.Model):
-    status = models.CharField(max_length=50)
-    created_date = models.DateField(auto_now_add=True)
-    deleted_date = models.DateField(null=True)
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
 
     TYPE = (
         ('S', 'student'),
@@ -53,9 +53,9 @@ class Enroll_Sect(models.Model):
     section_fk = models.ForeignKey(Section, on_delete=models.CASCADE)
 
 class Person(models.Model):
-    status = models.CharField(max_length=50)
-    created_date = models.DateField(auto_now_add=True)
-    deleted_date = models.DateField(null=True)
+    status = models.CharField(default='active',max_length=8)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deleted_date = models.DateTimeField(null=True)
 
     cedula = models.CharField(max_length= 11)
     first_name = models.CharField(max_length= 20)
