@@ -10,45 +10,40 @@ class FacultySerializer(serializers.ModelSerializer):
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
-        fields = ('status',
-                  'name',
-                  'description'
-                  'faculty')
+        fields = ('name',
+                  'description',
+                  'faculty_fk')
 
 
 class SectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Section
-        fields = ('status',
-                  'name',
-                  'description'
+        fields = ('name',
+                  'description',
                   'uc',
                   'semester',
                   'type',
                   'ht',
                   'hp',
                   'hl',
-                  'school')
+                  'school_fk')
 
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = ('status',
-                  'type',)
+        fields = ('type',)
 
 
 class EnrollSectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enroll_Sect
         fields = ('enrollment',
-                  'section')
+                  'section_fk')
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('status',
-                  'cedula',
+        fields = ('cedula',
                   'first_name',
-                  'last_name',
-                  'enrollment')
+                  'last_name')
