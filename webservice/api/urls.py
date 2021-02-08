@@ -40,6 +40,6 @@ urlpatterns = [
     url('enrollment-delete/(?P<pk>[0-9]+)$', views.enrollment_delete),
 
     #Enrollment_section
-    url('enrollment-section/', views.enrollment_sect),
-    url('enrollment-section-delete/(?P<pk>[0-9]+)$', views.enrollment_sect_delete)
+    url('enrollsect/', views.enrollment_sect),
+    url('enrollsect-delete/(?P<pk>[0-9]+)$', views.enrollment_sect_delete)
 ]
