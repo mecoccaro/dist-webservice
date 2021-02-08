@@ -15,7 +15,10 @@ urlpatterns = [
     url('faculty-delete/(?P<pk>[0-9]+)$', views.faculty_delete),
 
     #Student section
-    url('student_section/(?P<pk>[0-9]+)$', views.students_section),
+    url('student-section/(?P<pk>[0-9]+)$', views.students_section),
+
+    #Teacher section
+    url('teacher-section/(?P<pk>[0-9]+)$', views.teacher_section),
 
     #School
     url('school/', views.school),
@@ -34,5 +37,9 @@ urlpatterns = [
 
     #Enrollment
     url('enrollment/', views.enrollment),
-    url('enrollment-delete/(?P<pk>[0-9]+)$', views.enrollment_delete)
+    url('enrollment-delete/(?P<pk>[0-9]+)$', views.enrollment_delete),
+
+    #Enrollment_section
+    url('enrollsect/', views.enrollment_sect),
+    url('enrollsect-delete/(?P<pk>[0-9]+)$', views.enrollment_sect_delete)
 ]
