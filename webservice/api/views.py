@@ -255,3 +255,19 @@ def students_section(request, pk):
             StudentList.append('Nombre: '+ student.first_name + ' '+ student.last_name + '| Cedula: '+ student.cedula )
     print(StudentList)
     return Response(StudentList)
+
+@api_view(['GET'])
+def teacher_section(request, pk):
+    TeacherList= []
+    try:
+        enr_sec = Enroll_Sect.objects.all().filter(section_fk_id=pk)
+    except Enroll_Sect.DoesNotExist:
+        return Response({'Section doesnt exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    for i in enr_sec.values('enrollment_fk_id'):
+        enroll = Enrollment.objects.get(pk=i.get('enrollment_fk_id'))
+        if enroll.type == 'T':
+            student = Person.objects.get(pk=enroll.person_fk_id)
+            TeacherList.append('Nombre: '+ student.first_name + ' '+ student.last_name + '| Cedula: '+ student.cedula )
+    print(TeacherList)
+    return Response(TeacherList)

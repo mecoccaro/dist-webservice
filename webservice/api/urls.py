@@ -17,6 +17,9 @@ urlpatterns = [
     #Student section
     url('student-section/(?P<pk>[0-9]+)$', views.students_section),
 
+    #Teacher section
+    url('teacher-section/(?P<pk>[0-9]+)$', views.teacher_section),
+
     #School
     url('school/', views.school),
     url('school-details/(?P<pk>[0-9]+)$', views.school_detail),
